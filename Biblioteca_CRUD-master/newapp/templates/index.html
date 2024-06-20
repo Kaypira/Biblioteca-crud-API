@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{% static 'newapp/css/style.css' %}">
+    <script src="{% static 'newapp/js/animations.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Meus Livros</h1>
+        <table id="customers" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Livro</th>
+                    <th>Autor</th>
+                    <th>Gênero</th>
+                    <th>Paginas</th>
+                    <th>Editora</th>
+                    <th>Data de Publicação</th>
+                    <th colspan="2" id="mid">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in mem %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.title }}</td>
+                    <td>{{ x.author }}</td>
+                    <td>{{ x.genre }}</td>
+                    <td>{{ x.pages }}</td>
+                    <td>{{ x.publisher }}</td>
+                    <td>{{ x.published_date }}</td>
+                    <td>
+                        <a href="update/{{ x.id }}"><button id="up">Editar</button></a>
+                    </td>
+                    <td>
+                        <a href="delete/{{ x.id }}"><button id="del">Deletar</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><br>
+        <a href="{% url 'add' %}"><button id="new3">Adicionar</button></a>
+    </div>
+</body>
+</html>
